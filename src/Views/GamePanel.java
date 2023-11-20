@@ -5,9 +5,61 @@ import java.awt.event.*;
 import java.util.Random;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements ActionListener{
+public class GamePanel extends JPanel {
+	GameMenu menu;
+	
+	public GamePanel() {
+		GameBoard board = new GameBoard(600, 600, "General", 6);
+		board.setBorder(new EmptyBorder(0,0,0,0));
+		
+		//this.setLayout(null); 
+		this.setBackground(Color.BLUE);
+		this.setBorder(new EmptyBorder(0,0,0,0));
+		this.add(board);
+	}
+	
+	public void startGame() {
+		insertMenu();
+	}
+	
+	public void insertMenu() {
+		
+	}
+	
+	public void selectGameMode() {
+		
+	}
+	
+	public void setArcadeMode() {
+		//GameBoard board = new GameBoard(600, 600, "General", 6);
+		//board.setBorder(new EmptyBorder(0,0,0,0));
+		
+		//this.setLayout(null); 
+		//this.setBackground(Color.BLUE);
+		//this.setBorder(new EmptyBorder(0,0,0,0));
+		//this.add(board);
+	}
+	
+	public void setPersonalizedMode() {
+		
+	}
+	
+	public void selectSnakeSkin() {
+		
+	}
+	
+	public void selectGameBoardType() {
+		
+	}
+	
+	
+}
+
+//@SuppressWarnings("serial")
+/*public class GamePanel extends JPanel implements ActionListener {
 	
 	// Board
 	static final int SCREEN_WIDTH = 600;
@@ -16,7 +68,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	static final int UNIT_SIZE = 25;
 	
 	static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT)/UNIT_SIZE;
-	static final int DELAY = 75;
+	static final int DELAY = 100;
 	
 	//Snake
 	final int x[] = new int[GAME_UNITS];
@@ -56,8 +108,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		draw(g);
-		
+		draw(g);		
 	}
 	
 	public void draw(Graphics g) {		
@@ -220,4 +271,4 @@ public class GamePanel extends JPanel implements ActionListener{
 		}
 	}
 
-}
+}*/
