@@ -1,16 +1,24 @@
 package Models;
 
+import java.awt.Color;
+
 public class Snake{
 	private int x[];
 	private int y[];	
-	private String skin;
+	String skinName;
+	Color snakeHeadColor;
+	Color snakeBodyColor;
 	private int bodyParts;
+	private int gameUnits;
 	
-	public Snake(int gameUnits, String skin, int bodyParts) {
+	public Snake(int bodyParts, String skinName, Color snakeHead, Color snakeBody) {
+		this.gameUnits = (600*600)/25;
 		this.x = new int[gameUnits];
 		this.y = new int[gameUnits];
-		this.skin = skin;
 		this.bodyParts = bodyParts;		
+		this.skinName = skinName;
+		this.snakeHeadColor = snakeHead;
+		this.snakeBodyColor = snakeBody;
 	}
 
 	public int[] getX() {
@@ -29,12 +37,12 @@ public class Snake{
 		this.y = y;
 	}
 
-	public String getSkin() {
-		return skin;
+	public String getSkinName() {
+		return skinName;
 	}
 
-	public void setSkin(String skin) {
-		this.skin = skin;
+	public void setSkinName(String skinName) {
+		this.skinName = skinName;
 	}
 
 	public int getBodyParts() {
@@ -44,6 +52,28 @@ public class Snake{
 	public void setBodyParts(int bodyParts) {
 		this.bodyParts = bodyParts;
 	}
-	
-	
+
+	public Color getSnakeHeadColor() {
+		return snakeHeadColor;
+	}
+
+	public void setSnakeHeadColor(Color snakeHeadColor) {
+		this.snakeHeadColor = snakeHeadColor;
+	}
+
+	public Color getSnakeBodyColor() {
+		return snakeBodyColor;
+	}
+
+	public void setSnakeBodyColor(Color snakeBodyColor) {
+		this.snakeBodyColor = snakeBodyColor;
+	}
+
+	public int getGameUnits() {
+		return gameUnits;
+	}
+
+	public void setGameUnits(int gameUnits) {
+		this.gameUnits = gameUnits;
+	}
 }

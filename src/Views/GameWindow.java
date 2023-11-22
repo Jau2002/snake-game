@@ -21,4 +21,6 @@ public class GameWindow extends JFrame{
 	public GamePanel getApp() {
 		return app;
 	}
+	
+	
 }

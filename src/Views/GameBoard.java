@@ -11,6 +11,7 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 import Models.Fruit;
 import Models.Snake;
@@ -31,11 +32,12 @@ public class GameBoard extends JPanel implements ActionListener {
 	private Snake gameSnake;
 	private Fruit currentFruit;
 	
-	int fruitsEaten;
-	int movesQuantity;
-	int score;
+	private int level;
+	private int fruitsEaten;
+	private int movesQuantity;
+	private int score;
 	
-	public GameBoard(int screenWidth, int screenHeight, String snakeSkin, int snakeBodyParts) {
+	public GameBoard(int screenWidth, int screenHeight, Snake snake) {
 		// Board Initial conditions
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;		
@@ -45,14 +47,16 @@ public class GameBoard extends JPanel implements ActionListener {
 		this.direction = 'R';
 		
 		// Set Snake
-		gameSnake = new Snake(gameUnits, snakeSkin, snakeBodyParts);
+		gameSnake = snake;
 		
 		// Setting gameBoard
 		random = new Random();
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.BLACK);
 		this.setFocusable(true);
-		this.addKeyListener(new BoardKeyAdapter());
+		this.setBorder(new EmptyBorder(0,0,0,0));
+		this.addKeyListener(new BoardKeyAdapter());				
+		
 		startGame();
 	}
 	
@@ -110,13 +114,15 @@ public class GameBoard extends JPanel implements ActionListener {
 		int bodyParts = gameSnake.getBodyParts();
 		int snakeX[] = gameSnake.getX();
 		int snakeY[] = gameSnake.getY();
+		Color headColor = gameSnake.getSnakeHeadColor();
+		Color bodyColor = gameSnake.getSnakeBodyColor();
 		
 		for(int i = 0; i < bodyParts; i++) {
 			if (i == 0) {
-				g.setColor(Color.GREEN);
+				g.setColor(headColor);
 				g.fillRect(snakeX[i], snakeY[i], unitSize, unitSize);
 			} else {
-				g.setColor(new Color(45,180,0));
+				g.setColor(bodyColor);
 				g.fillRect(snakeX[i], snakeY[i], unitSize, unitSize);
 			}
 		}	

@@ -1,12 +1,8 @@
 package Controllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import Views.GameWindow;
 
-public class GameController implements ActionListener{
-	@SuppressWarnings("unused")
+public class GameController {
 	private GameWindow window;
 	
 	public GameController() {
@@ -16,10 +12,8 @@ public class GameController implements ActionListener{
 	public void startGame() {
 		window = new GameWindow();
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	
+	public GameWindow getWindow() {
+		return window;
 	}
 }
