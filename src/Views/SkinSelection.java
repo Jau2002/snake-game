@@ -63,6 +63,7 @@ public class SkinSelection extends JPanel implements ActionListener{
 			
 			if (skins[i].equals("Green")) {
 				newButton.setSelected(true);
+				setSkin("Green");
 			}
 			
 			JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));

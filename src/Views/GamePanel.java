@@ -11,9 +11,11 @@ import Models.Snake;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener{
-	GameMenu menu;
-	SkinSelection selectSkin;
-	GameBoard board;
+	private GameMenu menu;
+	private SkinSelection selectSkin;
+	private JPanel game;
+	private GameBoard board;
+	private ScoreSection scores;
 	
 	public GamePanel() {
 		this.setBorder(new EmptyBorder(0,0,0,0));
@@ -43,8 +45,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	public void insertSkinSelection() {
 		selectSkin = new SkinSelection();
 		
-		this.removeMenu();
-		
+		this.removeMenu();		
 		this.add(selectSkin);
 		this.revalidate();
 	    this.repaint();	  
@@ -70,14 +71,12 @@ public class GamePanel extends JPanel implements ActionListener{
 		} else if(c.equals("leadBoard")) {
 			
 		} else if(c.equals("skinStartGame")) {
-			// Crear tablero de juego conlas características necesarioas
 			String skinName = selectSkin.getSkinName();
 			Color snakeHeadColor = selectSkin.getHeadColor();
 			Color snakeBodyColor = selectSkin.getBodyColor();
 			
-			Snake newSnake = new Snake(4, skinName, snakeHeadColor, snakeBodyColor);
-			
-			removeSkinSelection();
+			Snake newSnake = new Snake(4, skinName, snakeHeadColor, snakeBodyColor);			
+			removeSkinSelection();			
 			createNewGame(newSnake);
 		}
 		
@@ -89,15 +88,19 @@ public class GamePanel extends JPanel implements ActionListener{
 	}
 	
 	public void createNewGame(Snake snake) {		
-		board = new GameBoard(600, 600, snake);
-		insertBoard(board);					
-	}
-	
-	public void insertBoard(GameBoard board) {
-		this.add(board);
+		game = new JPanel();
+		game.setLayout(new BorderLayout());
+
+		scores = new ScoreSection();
+		board = new GameBoard(600, 600, snake, scores);
+
+		game.add(scores, BorderLayout.NORTH);
+		game.add(board, BorderLayout.CENTER);
+		
+		this.add(game);
 		this.revalidate();
-	    this.repaint();
-	    board.requestFocusInWindow();
+		this.repaint();
+		board.requestFocusInWindow();
 	}
 	
 	public void setPersonalizedMode() {
