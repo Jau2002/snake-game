@@ -4,12 +4,16 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import Controllers.GameController;
+
 @SuppressWarnings("serial")
 public class GameWindow extends JFrame{
 	private GamePanel app;
+	private GameController controller;
 	
-	public GameWindow() {
-		app = new GamePanel();
+	public GameWindow(GameController appController) {
+		controller = appController;
+		app = new GamePanel(controller);
 		
 		this.add(app);
 		this.setTitle("Snake Game");

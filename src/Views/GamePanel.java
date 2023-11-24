@@ -7,17 +7,22 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import Controllers.GameController;
 import Models.Snake;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements ActionListener{
+public class GamePanel extends JPanel implements ActionListener {
 	private GameMenu menu;
 	private SkinSelection selectSkin;
 	private JPanel game;
 	private GameBoard board;
 	private ScoreSection scores;
+	private GameOver go;
+	private GameController controller;
 	
-	public GamePanel() {
+	public GamePanel(GameController controller) {
+		this.controller = controller;		
+		
 		this.setBorder(new EmptyBorder(0,0,0,0));
 		this.setVisible(true);
 		startGame();
@@ -32,6 +37,8 @@ public class GamePanel extends JPanel implements ActionListener{
 		this.add(menu);
 		this.revalidate();
 	    this.repaint();
+	    
+	    menu.setPreferredSize(new Dimension(600, 660));
 	    
 	    JButton arcadeModeButton = menu.getArcadeModeButton();
 		JButton personalizedModeButton = menu.getPersonalizedModeButton();
@@ -53,6 +60,21 @@ public class GamePanel extends JPanel implements ActionListener{
 	    // Select Skin Elements
 	 	JButton skinSectionStartButton = selectSkin.getStartGame();
 	 	skinSectionStartButton.addActionListener(this);
+	}
+	
+	public void insertGameOver(String score, String movements, String fruits, String level) {
+		this.removeBoard();
+		
+		go = new GameOver(score, movements, fruits, level, controller);
+		this.add(go);
+		this.revalidate();
+		this.repaint();
+		
+		JButton menuButton = go.getmenuButton();
+		JButton retryButton = go.getResetButton();
+		
+		menuButton.addActionListener(this);
+		retryButton.addActionListener(this);
 	}
 	
 	@Override
@@ -78,9 +100,15 @@ public class GamePanel extends JPanel implements ActionListener{
 			Snake newSnake = new Snake(4, skinName, snakeHeadColor, snakeBodyColor);			
 			removeSkinSelection();			
 			createNewGame(newSnake);
+		} else if (c.equals("tryAgain")) {
+			this.removeGameOver();
+			this.setArcadeMode();
+		} else if (c.equals("backMenu")) {
+			this.removeGameOver();
+			startGame();
 		}
 		
-	}	
+	}
 	
 	public void setArcadeMode() {
 		this.removeMenu();
@@ -92,7 +120,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		game.setLayout(new BorderLayout());
 
 		scores = new ScoreSection();
-		board = new GameBoard(600, 600, snake, scores);
+		board = new GameBoard(600, 600, snake, scores, this);
 
 		game.add(scores, BorderLayout.NORTH);
 		game.add(board, BorderLayout.CENTER);
@@ -107,10 +135,6 @@ public class GamePanel extends JPanel implements ActionListener{
 		
 	}
 	
-	public void selectSnakeSkin() {
-		
-	}
-	
 	public void selectGameBoardType() {
 		
 	}
@@ -122,7 +146,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	}
 	
 	public void removeBoard() {
-		this.remove(board);
+		this.remove(game);
 		this.revalidate();
 	    this.repaint();
 	}
@@ -133,12 +157,22 @@ public class GamePanel extends JPanel implements ActionListener{
 	    this.repaint();
 	}
 	
+	public void removeGameOver() {
+		this.remove(go);
+		this.revalidate();
+	    this.repaint();
+	}
+	
 	public GameMenu getMenu() {
 		return menu;
 	}
 	
 	public GameBoard getBoard() {
 		return board;
+	}
+	
+	public GameOver getGO() {
+		return go;
 	}
 	
 }

@@ -12,7 +12,6 @@ public class GameMenu extends JPanel{
 	
 	public GameMenu() {
 		this.setLayout(new GridLayout(4,1));
-		this.setPreferredSize(new Dimension(600, 600));
 		this.setBorder(new EmptyBorder(0,0,0,0));
 		initializeComponents();
 		this.setVisible(true);

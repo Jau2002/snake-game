@@ -32,8 +32,12 @@ public class GameBoard extends JPanel implements ActionListener {
 	private Snake gameSnake;
 	private Fruit currentFruit;
 	private ScoreSection scores;
+	private GamePanel parent;
 	
-	public GameBoard(int screenWidth, int screenHeight, Snake snake, ScoreSection scores) {
+	private Color gameBoardColor;
+	private Color gridColor;
+	
+	public GameBoard(int screenWidth, int screenHeight, Snake snake, ScoreSection scores, GamePanel gameParent) {
 		// Board Initial conditions
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;		
@@ -48,10 +52,15 @@ public class GameBoard extends JPanel implements ActionListener {
 		// Set Snake
 		gameSnake = snake;
 		
+		this.parent = gameParent;
+		
+		this.gameBoardColor = new Color(0,0,0);
+		this.gridColor = new Color(20,20,20);
+		
 		// Setting gameBoard
 		random = new Random();
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-		this.setBackground(Color.BLACK);
+		this.setBackground(gameBoardColor);
 		this.setFocusable(true);
 		this.setBorder(new EmptyBorder(0,0,0,0));
 		this.addKeyListener(new BoardKeyAdapter());				
@@ -87,12 +96,12 @@ public class GameBoard extends JPanel implements ActionListener {
 			drawGrid(g);
 			drawFruit(g);
 			drawSnake(g);
-		} else {
-			//gameOver(g);
 		}
 	}
 	
 	public void drawGrid(Graphics g) {
+		g.setColor(gridColor);
+		
 		for (int i = 0; i < screenHeight/unitSize; i++) {
 			// Draw vertical
 			g.drawLine(i*unitSize, 0, i*unitSize, screenHeight);
@@ -105,10 +114,6 @@ public class GameBoard extends JPanel implements ActionListener {
 		int x = currentFruit.getFruitX();
 		int y = currentFruit.getFruitY();
 		Color fruitColor = currentFruit.getColor();
-		
-		if (currentFruit.getFruitType().equals("Cherry") || currentFruit.getFruitType().equals("Banana")) {
-			//System.out.println("Debug: X=" + currentFruit.getFruitX() + ", Y=" + currentFruit.getFruitY());			
-		}
 		
 		g.setColor(fruitColor);
 		g.fillOval(x, y, unitSize, unitSize);
@@ -191,38 +196,53 @@ public class GameBoard extends JPanel implements ActionListener {
 		String currentLevel = scores.getCurrentLevel().getText();
 		int newSpeed = 0;
 		
-		if (currentScore >= 40 && currentScore <= 90) {
+		if (currentScore >= 20 && currentScore <= 40) {
 			if(!currentLevel.equals("2")) {
 				scores.getCurrentLevel().setText("2");
-				newSpeed = gameSpeed -= 15;
+				newSpeed = gameSpeed -= 20;
+				
+				gameBoardColor = new Color(190, 190, 190);
+				this.setBackground(gameBoardColor);
 			}
 		}
 
-		if(currentScore > 90 && currentScore <= 160) {
+		if(currentScore > 50 && currentScore <= 90) {
 			if(!currentLevel.equals("3")) {
 				scores.getCurrentLevel().setText("3");
-				newSpeed = gameSpeed -= 15;
+				newSpeed = gameSpeed -= 20;
+				
+				gameBoardColor = new Color(110, 110, 110);
+				this.setBackground(gameBoardColor);
 			}
 		}
 
-		if(currentScore > 160 && currentScore <= 210) {
+		if(currentScore > 90 && currentScore <= 140) {
 			if(!currentLevel.equals("4")) {
 				scores.getCurrentLevel().setText("4");
-				newSpeed = gameSpeed -= 15;
+				newSpeed = gameSpeed -= 30;
+				
+				gameBoardColor = new Color(90, 90, 90);
+				this.setBackground(gameBoardColor);
 			}
 		}
 
-		if (currentScore > 210 && currentScore <= 270) {
+		if (currentScore > 140 && currentScore <= 200) {
 			if(!currentLevel.equals("5")) {
 				scores.getCurrentLevel().setText("5");
-				newSpeed = gameSpeed -= 15;
+				newSpeed = gameSpeed -= 30;
+				
+				gameBoardColor = new Color(20, 20, 20);
+				this.setBackground(gameBoardColor);
 			}
 		}
 
-		if (currentScore > 270) {
+		if (currentScore > 200) {
 			if(!currentLevel.equals("6")) {
 				scores.getCurrentLevel().setText("6");
-				newSpeed = gameSpeed -= 15;
+				newSpeed = gameSpeed -= 40;
+				
+				gameBoardColor = new Color(0, 0, 0);
+				this.setBackground(gameBoardColor);
 			}
 		}
 		
@@ -263,6 +283,13 @@ public class GameBoard extends JPanel implements ActionListener {
 		
 		if (!running) {
 			timer.stop();
+			
+			String totalScore = scores.getTotalScore().getText();
+			String totalMovements = scores.getTotalMovements().getText();
+			String finalFruits = scores.getFruitsEaten().getText();
+			String finalLevel = scores.getCurrentLevel().getText();
+			
+			parent.insertGameOver(totalScore, totalMovements, finalFruits, finalLevel);
 		}
 	}
 	
@@ -346,10 +373,12 @@ public class GameBoard extends JPanel implements ActionListener {
 				break;
 			}
 			
-			int moves = convertStringToInt(scores.getTotalMovements().getText());
-			moves += 1;
-			
-			scores.getTotalMovements().setText(""+moves);
+			if (running != false) {
+				int moves = convertStringToInt(scores.getTotalMovements().getText());
+				moves += 1;
+				
+				scores.getTotalMovements().setText(""+moves);				
+			}
 		}
 	}
 	

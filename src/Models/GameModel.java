@@ -6,9 +6,7 @@ public class GameModel {
 	private String userNickName;
 	private int totalScore;
 	private int totalMovements;
-	private int totalFruitOne;
-	private int totalFruitTwo;
-	private int totalFruitThree;
+	private int totalFruits;
 	
 	public GameModel(int gameId) {
 		this.gameId = gameId;
@@ -16,9 +14,7 @@ public class GameModel {
 		this.snakeSkin = "";
 		this.totalScore = 0;
 		this.totalMovements = 0;
-		this.totalFruitOne = 0;
-		this.totalFruitTwo = 0;
-		this.totalFruitThree = 0;
+		this.totalFruits = 0;
 	}
 
 	// Getters & Setters
@@ -54,30 +50,13 @@ public class GameModel {
 		this.totalMovements = totalMovements;
 	}
 
-	public int getTotalFruitOne() {
-		return totalFruitOne;
+	public int getTotalFruits() {
+		return totalFruits;
 	}
 
-	public void setTotalFruitOne(int totalFruitOne) {
-		this.totalFruitOne = totalFruitOne;
+	public void setTotalFruitOne(int totalFruits) {
+		this.totalFruits = totalFruits;
 	}
-
-	public int getTotalFruitTwo() {
-		return totalFruitTwo;
-	}
-
-	public void setTotalFruitTwo(int totalFruitTwo) {
-		this.totalFruitTwo = totalFruitTwo;
-	}
-
-	public int getTotalFruitThree() {
-		return totalFruitThree;
-	}
-
-	public void setTotalFruitThree(int totalFruitThree) {
-		this.totalFruitThree = totalFruitThree;
-	}
-
 	public String getSnakeSkin() {
 		return snakeSkin;
 	}
