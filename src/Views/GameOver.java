@@ -23,16 +23,18 @@ public class GameOver extends JPanel implements ActionListener {
 	private String movements;
 	private String fruits;
 	private String level;
+	private String snakeSkin;
 	
 	private GameController controller;
 	
-	public GameOver(String score, String movements, String fruits, String level, GameController controller) {
+	public GameOver(String score, String movements, String fruits, String level, String snakeSkinName, GameController controller) {
 		this.controller = controller;		
 		
 		this.score = score;
 		this.movements = movements;
 		this.fruits = fruits;
 		this.level = level;
+		this.snakeSkin = snakeSkinName;
 		
 		this.setLayout(new GridLayout(5,1));
 		this.setPreferredSize(new Dimension(600, 700));
@@ -249,10 +251,10 @@ public class GameOver extends JPanel implements ActionListener {
 			String nickName = this.nameInput.getText();
 			
 			if(nickName.equals("")) {
-				nickName = "Anonimous";
+				nickName = "No name";
 			}
 			
-			controller.getGameRecord(score, movements, fruits, level, nickName);
+			controller.getGameRecord(score, movements, fruits, level, snakeSkin, nickName);
 			
 		}
 	}

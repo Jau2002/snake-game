@@ -21,12 +21,15 @@ public class GameController {
 		return window;
 	}
 	
-	public void getGameRecord(String score, String movements, String fruits, String level, String nickname) {
+	public void getGameRecord(String score, String movements, String fruits, String level, String snakeSkinName, String nickname) {
 		System.out.println(
-				"\n" + "Nickname: " + nickname 
-				+ "\n" + "Score: " + score
-				+ "\n" + "Total Movements: " + movements
-				+ "\n" + "Total fruits: " + fruits
-				+ "\n" + "Max Level reached: " + level);
+				"{"
+				+ "\n " + "Nickname: " + nickname + "," 
+				+ "\n " + "Score: " + score + ","
+				+ "\n " + "Total Movements: " + movements + ","
+				+ "\n " + "Total fruits: " + fruits + ","
+				+ "\n " + "Max Level reached: " + level + ","
+				+ "\n " + "Skin: " + snakeSkinName
+				+ "\n}");
 	}
 }

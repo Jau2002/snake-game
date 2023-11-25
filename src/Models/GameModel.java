@@ -7,14 +7,16 @@ public class GameModel {
 	private int totalScore;
 	private int totalMovements;
 	private int totalFruits;
+	private int maxLevel;
 	
-	public GameModel(int gameId) {
+	public GameModel(int gameId, int score, int movements, int fruits, int level, String snakeSkin, String nickName) {
 		this.gameId = gameId;
-		this.userNickName = "";
-		this.snakeSkin = "";
-		this.totalScore = 0;
-		this.totalMovements = 0;
-		this.totalFruits = 0;
+		this.userNickName = nickName;
+		this.snakeSkin = snakeSkin;
+		this.totalScore = score;
+		this.totalMovements = movements;
+		this.totalFruits = fruits;
+		this.maxLevel = level;
 	}
 
 	// Getters & Setters
@@ -63,5 +65,17 @@ public class GameModel {
 
 	public void setSnakeSkin(String snakeSkin) {
 		this.snakeSkin = snakeSkin;
+	}
+
+	public int getMaxLevel() {
+		return maxLevel;
+	}
+
+	public void setMaxLevel(int maxLevel) {
+		this.maxLevel = maxLevel;
+	}
+
+	public void setTotalFruits(int totalFruits) {
+		this.totalFruits = totalFruits;
 	}
 }

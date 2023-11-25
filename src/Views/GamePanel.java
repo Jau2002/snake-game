@@ -62,10 +62,10 @@ public class GamePanel extends JPanel implements ActionListener {
 	 	skinSectionStartButton.addActionListener(this);
 	}
 	
-	public void insertGameOver(String score, String movements, String fruits, String level) {
+	public void insertGameOver(String score, String movements, String fruits, String level, String snakeSkinName) {
 		this.removeBoard();
 		
-		go = new GameOver(score, movements, fruits, level, controller);
+		go = new GameOver(score, movements, fruits, level, snakeSkinName, controller);
 		this.add(go);
 		this.revalidate();
 		this.repaint();

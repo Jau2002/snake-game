@@ -77,10 +77,9 @@ public class GameBoard extends JPanel implements ActionListener {
 	private void initializeTimer() {
 		if (timer != null) {
 	        timer.stop();
-	        timer = null; // Libera recursos
+	        timer = null;
 	    }
 		
-	    // Asegúrate de que gameSpeed tenga un valor inicial adecuado
 	    timer = new Timer(gameSpeed, this);
 	    timer.setInitialDelay(0);
 	    timer.start();
@@ -288,8 +287,9 @@ public class GameBoard extends JPanel implements ActionListener {
 			String totalMovements = scores.getTotalMovements().getText();
 			String finalFruits = scores.getFruitsEaten().getText();
 			String finalLevel = scores.getCurrentLevel().getText();
+			String snakeSkinName = gameSnake.getSkinName();
 			
-			parent.insertGameOver(totalScore, totalMovements, finalFruits, finalLevel);
+			parent.insertGameOver(totalScore, totalMovements, finalFruits, finalLevel, snakeSkinName);
 		}
 	}
 	
