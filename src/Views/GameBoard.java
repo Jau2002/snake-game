@@ -13,9 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
-import Models.Fruit;
-import Models.Snake;
-//import Views.GameKeyAdapter;
+import Utils.Fruit;
+import Utils.Snake;
 
 @SuppressWarnings("serial")
 public class GameBoard extends JPanel implements ActionListener {	

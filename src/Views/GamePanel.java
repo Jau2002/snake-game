@@ -8,7 +8,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import Controllers.GameController;
-import Models.Snake;
+import Utils.Snake;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener {
