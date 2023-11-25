@@ -1,79 +1,80 @@
 package Utils;
 
+
 import java.awt.Color;
 
-public class Snake{
-	private int x[];
-	private int y[];	
-	String skinName;
-	Color snakeHeadColor;
-	Color snakeBodyColor;
-	private int bodyParts;
-	private int gameUnits;
-	
-	public Snake(int bodyParts, String skinName, Color snakeHead, Color snakeBody) {
-		this.gameUnits = (600*600)/25;
-		this.x = new int[gameUnits];
-		this.y = new int[gameUnits];
-		this.bodyParts = bodyParts;		
-		this.skinName = skinName;
-		this.snakeHeadColor = snakeHead;
-		this.snakeBodyColor = snakeBody;
-	}
+public class Snake {
+    private int x[];
+    private int y[];
+    String skinName;
+    Color snakeHeadColor;
+    Color snakeBodyColor;
+    private int bodyParts;
+    private int gameUnits;
 
-	public int[] getX() {
-		return x;
-	}
+    public Snake(int bodyParts, String skinName, Color snakeHead, Color snakeBody) {
+        gameUnits = (600 * 600) / 25;
+        x = new int[gameUnits];
+        y = new int[gameUnits];
+        this.bodyParts = bodyParts;
+        this.skinName = skinName;
+        this.snakeHeadColor = snakeHead;
+        this.snakeBodyColor = snakeBody;
+    }
 
-	public void setX(int[] x) {
-		this.x = x;
-	}
+    public int[] getX() {
+        return x;
+    }
 
-	public int[] getY() {
-		return y;
-	}
+    public void setX(int[] x) {
+        this.x = x;
+    }
 
-	public void setY(int[] y) {
-		this.y = y;
-	}
+    public int[] getY() {
+        return y;
+    }
 
-	public String getSkinName() {
-		return skinName;
-	}
+    public void setY(int[] y) {
+        this.y = y;
+    }
 
-	public void setSkinName(String skinName) {
-		this.skinName = skinName;
-	}
+    public String getSkinName() {
+        return skinName;
+    }
 
-	public int getBodyParts() {
-		return bodyParts;
-	}
+    public void setSkinName(String skinName) {
+        this.skinName = skinName;
+    }
 
-	public void setBodyParts(int bodyParts) {
-		this.bodyParts = bodyParts;
-	}
+    public int getBodyParts() {
+        return bodyParts;
+    }
 
-	public Color getSnakeHeadColor() {
-		return snakeHeadColor;
-	}
+    public void setBodyParts(int bodyParts) {
+        this.bodyParts = bodyParts;
+    }
 
-	public void setSnakeHeadColor(Color snakeHeadColor) {
-		this.snakeHeadColor = snakeHeadColor;
-	}
+    public Color getSnakeHeadColor() {
+        return snakeHeadColor;
+    }
 
-	public Color getSnakeBodyColor() {
-		return snakeBodyColor;
-	}
+    public void setSnakeHeadColor(Color snakeHeadColor) {
+        this.snakeHeadColor = snakeHeadColor;
+    }
 
-	public void setSnakeBodyColor(Color snakeBodyColor) {
-		this.snakeBodyColor = snakeBodyColor;
-	}
+    public Color getSnakeBodyColor() {
+        return snakeBodyColor;
+    }
 
-	public int getGameUnits() {
-		return gameUnits;
-	}
+    public void setSnakeBodyColor(Color snakeBodyColor) {
+        this.snakeBodyColor = snakeBodyColor;
+    }
 
-	public void setGameUnits(int gameUnits) {
-		this.gameUnits = gameUnits;
-	}
+    public int getGameUnits() {
+        return gameUnits;
+    }
+
+    public void setGameUnits(int gameUnits) {
+        this.gameUnits = gameUnits;
+    }
 }
