@@ -85,7 +85,7 @@ public class GamePanel extends JPanel implements ActionListener {
             setArcadeMode();
         } else if (c.equals("personalizedMode")) {
 
-        } else if (c.equals("leadBoard")) {
+        } else if (c.equals("gameRecords")) {
             controller.getRecords().readRecords();
 
         } else if (c.equals("skinStartGame")) {
