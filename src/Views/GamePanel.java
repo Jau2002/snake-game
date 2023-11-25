@@ -41,11 +41,9 @@ public class GamePanel extends JPanel implements ActionListener {
 	    menu.setPreferredSize(new Dimension(600, 660));
 	    
 	    JButton arcadeModeButton = menu.getArcadeModeButton();
-		JButton personalizedModeButton = menu.getPersonalizedModeButton();
 		JButton leadBoardButton = menu.getLeadBoardButton();
 		
 		arcadeModeButton.addActionListener(this);
-		personalizedModeButton.addActionListener(this);
 		leadBoardButton.addActionListener(this);
 	}
 	
@@ -88,11 +86,8 @@ public class GamePanel extends JPanel implements ActionListener {
 	public void validateAction(String c) {
 		if (c.equals("arcadeMode")) {
 			this.setArcadeMode();
-		} else if (c.equals("personalizedMode")) {
-			
-		} else if(c.equals("leadBoard")) {
-			controller.getRecords().readRecords();
-			
+		} else if(c.equals("gameRecords")) {
+			controller.getRecords().readRecords();			
 		} else if(c.equals("skinStartGame")) {
 			String skinName = selectSkin.getSkinName();
 			Color snakeHeadColor = selectSkin.getHeadColor();
