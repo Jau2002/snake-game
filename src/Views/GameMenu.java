@@ -12,7 +12,7 @@ public class GameMenu extends JPanel {
     private JButton leadBoardButton;
 
     public GameMenu() {
-        setLayout(new GridLayout(4, 1));
+        setLayout(new GridLayout(3, 1));
         setBorder(new EmptyBorder(0, 0, 0, 0));
         initializeComponents();
         setVisible(true);
@@ -21,7 +21,6 @@ public class GameMenu extends JPanel {
     public void initializeComponents() {
         insertTitle();
         insertArcadeModeButton();
-        insertPersonalizedModeButton();
         insertLeadBoardButton();
     }
 
@@ -34,26 +33,18 @@ public class GameMenu extends JPanel {
     }
 
     public void insertArcadeModeButton() {
-        arcadeModeButton = new JButton("Arcade Mode");
+        arcadeModeButton = new JButton("Start Game");
         arcadeModeButton.setPreferredSize(new Dimension(150, 40));
         arcadeModeButton.setFont(new Font("Arial", Font.BOLD, 25));
         arcadeModeButton.setActionCommand("arcadeMode");
         add(arcadeModeButton);
     }
 
-    public void insertPersonalizedModeButton() {
-        personalizedModeButton = new JButton("Personalized Mode");
-        personalizedModeButton.setPreferredSize(new Dimension(150, 40));
-        personalizedModeButton.setFont(new Font("Arial", Font.BOLD, 25));
-        personalizedModeButton.setActionCommand("personalizedMode");
-        add(personalizedModeButton);
-    }
-
     public void insertLeadBoardButton() {
-        leadBoardButton = new JButton("Lead board");
+        leadBoardButton = new JButton("Game records");
         leadBoardButton.setPreferredSize(new Dimension(150, 40));
         leadBoardButton.setFont(new Font("Arial", Font.BOLD, 25));
-        leadBoardButton.setActionCommand("leadBoard");
+        leadBoardButton.setActionCommand("gameRecords");
         add(leadBoardButton);
     }
 

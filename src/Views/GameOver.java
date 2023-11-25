@@ -264,107 +264,11 @@ public class GameOver extends JPanel implements ActionListener {
 		return newText;
 	}
 
-	public JLabel getTotalScore() {
-		return totalScore;
-	}
-
-	public void setTotalScore(JLabel totalScore) {
-		this.totalScore = totalScore;
-	}
-
-	public JLabel getTotalMovements() {
-		return totalMovements;
-	}
-
-	public void setTotalMovements(JLabel totalMovements) {
-		this.totalMovements = totalMovements;
-	}
-
-	public JLabel gettotalFruits() {
-		return totalFruits;
-	}
-
-	public void settotalFruits(JLabel totalFruits) {
-		this.totalFruits = totalFruits;
-	}
-
-	public JLabel getmaxLevel() {
-		return maxLevel;
-	}
-
-	public void setmaxLevel(JLabel maxLevel) {
-		this.maxLevel = maxLevel;
-	}
-
-	public JLabel getTotalFruits() {
-		return totalFruits;
-	}
-
-	public void setTotalFruits(JLabel totalFruits) {
-		this.totalFruits = totalFruits;
-	}
-
-	public JLabel getMaxLevel() {
-		return maxLevel;
-	}
-
-	public void setMaxLevel(JLabel maxLevel) {
-		this.maxLevel = maxLevel;
-	}
-
 	public JButton getmenuButton() {
 		return menuButton;
-	}
-
-	public void setmenuButton(JButton menuButton) {
-		this.menuButton = menuButton;
 	}
 	
 	public JButton getResetButton() {
 		return resetButton;
 	}
-
-	public void setResetButton(JButton resetButton) {
-		this.resetButton = resetButton;
-	}
-
-	public JTextField getNameInput() {
-		return nameInput;
-	}
-
-	public void setNameInput(JTextField nameInput) {
-		this.nameInput = nameInput;
-	}
-
-	public String getScore() {
-		return score;
-	}
-
-	public void setScore(String score) {
-		this.score = score;
-	}
-
-	public String getMovements() {
-		return movements;
-	}
-
-	public void setMovements(String movements) {
-		this.movements = movements;
-	}
-
-	public String getFruits() {
-		return fruits;
-	}
-
-	public void setFruits(String fruits) {
-		this.fruits = fruits;
-	}
-
-	public String getLevel() {
-		return level;
-	}
-
-	public void setLevel(String level) {
-		this.level = level;
-	}	
 }

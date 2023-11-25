@@ -13,6 +13,7 @@ import Utils.Snake;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener {
+<<<<<<< HEAD
     private GameMenu menu;
     private SkinSelection selectSkin;
     private JPanel game;
@@ -20,6 +21,110 @@ public class GamePanel extends JPanel implements ActionListener {
     private ScoreSection scores;
     private GameOver go;
     private GameController controller;
+=======
+	private GameMenu menu;
+	private SkinSelection selectSkin;
+	private JPanel game;
+	private GameBoard board;
+	private ScoreSection scores;
+	private GameOver go;
+	private GameController controller;
+	
+	public GamePanel(GameController controller) {
+		this.controller = controller;		
+		
+		this.setBorder(new EmptyBorder(0,0,0,0));
+		this.setVisible(true);
+		startGame();
+	}
+	
+	public void startGame() {
+		insertMenu();
+	}
+	
+	public void insertMenu() {
+		menu = new GameMenu();
+		this.add(menu);
+		this.revalidate();
+	    this.repaint();
+	    
+	    menu.setPreferredSize(new Dimension(600, 660));
+	    
+	    JButton arcadeModeButton = menu.getArcadeModeButton();
+		JButton leadBoardButton = menu.getLeadBoardButton();
+		
+		arcadeModeButton.addActionListener(this);
+		leadBoardButton.addActionListener(this);
+	}
+	
+	public void insertSkinSelection() {
+		selectSkin = new SkinSelection();
+		
+		this.removeMenu();		
+		this.add(selectSkin);
+		this.revalidate();
+	    this.repaint();	  
+	    
+	    // Select Skin Elements
+	 	JButton skinSectionStartButton = selectSkin.getStartGame();
+	 	skinSectionStartButton.addActionListener(this);
+	}
+	
+	public void insertGameOver(String score, String movements, String fruits, String level, String snakeSkinName) {
+		this.removeBoard();
+		
+		go = new GameOver(score, movements, fruits, level, snakeSkinName, controller);
+		this.add(go);
+		this.revalidate();
+		this.repaint();
+		
+		JButton menuButton = go.getmenuButton();
+		JButton retryButton = go.getResetButton();
+		
+		menuButton.addActionListener(this);
+		retryButton.addActionListener(this);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String c = e.getActionCommand();
+		
+		validateAction(c);
+	}	
+	
+	public void validateAction(String c) {
+		if (c.equals("arcadeMode")) {
+			this.setArcadeMode();
+		} else if(c.equals("gameRecords")) {
+			controller.getRecords().readRecords();			
+		} else if(c.equals("skinStartGame")) {
+			String skinName = selectSkin.getSkinName();
+			Color snakeHeadColor = selectSkin.getHeadColor();
+			Color snakeBodyColor = selectSkin.getBodyColor();
+			
+			Snake newSnake = new Snake(4, skinName, snakeHeadColor, snakeBodyColor);			
+			removeSkinSelection();			
+			createNewGame(newSnake);
+		} else if (c.equals("tryAgain")) {
+			this.removeGameOver();
+			this.setArcadeMode();
+		} else if (c.equals("backMenu")) {
+			this.removeGameOver();
+			startGame();
+		}
+		
+	}
+	
+	public void setArcadeMode() {
+		this.removeMenu();
+		insertSkinSelection();	
+	}
+	
+	public void createNewGame(Snake snake) {		
+		game = new JPanel();
+		game.setLayout(new BorderLayout());
+>>>>>>> refs/remotes/origin/main
 
     public GamePanel(GameController controller) {
         this.controller = controller;

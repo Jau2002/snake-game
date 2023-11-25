@@ -4,6 +4,8 @@ package Models;
 import java.io.*;
 import java.util.*;
 
+import Models.GameModel;
+
 public class UsersHistory {
     private ArrayList<GameModel> records;
 
@@ -34,6 +36,8 @@ public class UsersHistory {
         } catch (IOException e) {
             System.err.println(e);
         }
+        
+        records = this.loadData();
     }
     
     public ArrayList<GameModel> loadData() {
