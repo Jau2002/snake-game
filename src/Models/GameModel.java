@@ -1,5 +1,6 @@
 package Models;
 
+
 public class GameModel {
 	private String gameId;
 	private String snakeSkin;

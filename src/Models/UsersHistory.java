@@ -1,5 +1,6 @@
 package Models;
 
+
 import java.io.*;
 import java.util.*;
 
@@ -60,7 +61,6 @@ public class UsersHistory {
                         System.out.println("Not Valid Format: " + pair);
                     }
                 }
-                
                 GameModel game = new GameModel();
                 game.setGameId(map.get("gameId"));
                 game.setTotalScore(Integer.parseInt(map.get("totalScore")));
@@ -74,7 +74,6 @@ public class UsersHistory {
         } catch (IOException e) {
             System.err.println(e);
         }
-        
         return newRecord;
     }    
     
@@ -89,7 +88,6 @@ public class UsersHistory {
     	    System.out.println("Snake Skin: " + juego.getSnakeSkin());
     	}
     }
-    
 
     public ArrayList<GameModel> getRecord() {
 		return records;
