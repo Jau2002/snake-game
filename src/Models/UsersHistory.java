@@ -49,7 +49,7 @@ public class UsersHistory {
         return record;
     }
 
-    public  ArrayList<GameModel> AddBestScore(GameModel score) {
+    /*public  ArrayList<GameModel> AddBestScore(GameModel score) {
     	Arrays.sort(record, Collections.reverseOrder());
                 for (GameModel scores : getRecord()) {
             
@@ -61,5 +61,5 @@ public class UsersHistory {
        
 
         return mejoresPuntajes;
-    }
+    }*/
 }
