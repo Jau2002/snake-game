@@ -91,6 +91,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		} else if (c.equals("personalizedMode")) {
 			
 		} else if(c.equals("leadBoard")) {
+			controller.getRecords().readRecords();
 			
 		} else if(c.equals("skinStartGame")) {
 			String skinName = selectSkin.getSkinName();

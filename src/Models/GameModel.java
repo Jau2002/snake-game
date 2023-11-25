@@ -1,7 +1,7 @@
 package Models;
 
 public class GameModel {
-	private int gameId;
+	private String gameId;
 	private String snakeSkin;
 	private String userNickName;
 	private int totalScore;
@@ -9,22 +9,22 @@ public class GameModel {
 	private int totalFruits;
 	private int maxLevel;
 	
-	public GameModel(int gameId, int score, int movements, int fruits, int level, String snakeSkin, String nickName) {
-		this.gameId = gameId;
-		this.userNickName = nickName;
-		this.snakeSkin = snakeSkin;
-		this.totalScore = score;
-		this.totalMovements = movements;
-		this.totalFruits = fruits;
-		this.maxLevel = level;
+	public GameModel() {
+		this.gameId = "";
+		this.userNickName = "";
+		this.snakeSkin = "";
+		this.totalScore = 0;
+		this.totalMovements = 0;
+		this.totalFruits = 0;
+		this.maxLevel = 0;
 	}
 
 	// Getters & Setters
-	public int getGameId() {
+	public String getGameId() {
 		return gameId;
 	}
 
-	public void setGameId(int gameId) {
+	public void setGameId(String gameId) {
 		this.gameId = gameId;
 	}
 	

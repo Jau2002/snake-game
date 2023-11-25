@@ -1,16 +1,20 @@
 package Controllers;
 
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import javax.swing.JButton;
+import java.util.UUID;
 
+import Models.GameModel;
+import Models.UsersHistory;
 import Views.GameWindow;
 
 public class GameController {
 	private GameWindow window;
+	private UsersHistory records;
 	
 	public GameController() {
+		this.records = new UsersHistory();
+		
 		startGame();
+		
 	}
 	
 	public void startGame() {
@@ -21,15 +25,41 @@ public class GameController {
 		return window;
 	}
 	
-	public void getGameRecord(String score, String movements, String fruits, String level, String snakeSkinName, String nickname) {
-		System.out.println(
-				"{"
-				+ "\n " + "Nickname: " + nickname + "," 
-				+ "\n " + "Score: " + score + ","
-				+ "\n " + "Total Movements: " + movements + ","
-				+ "\n " + "Total fruits: " + fruits + ","
-				+ "\n " + "Max Level reached: " + level + ","
-				+ "\n " + "Skin: " + snakeSkinName
-				+ "\n}");
+	public UsersHistory getRecords() {
+		return records;
 	}
+	
+	public void getGameRecord(String score, String movements, String fruits, String level, String snakeSkinName, String nickname) {
+		GameModel gameFinalScore = new GameModel();
+		
+		String newId = generateGameId();
+		int totalScore = convertStringToInt(score);
+		int totalMovements = convertStringToInt(movements);
+		int totalFruits = convertStringToInt(fruits);
+		int maxLevel = convertStringToInt(level);
+
+		gameFinalScore.setGameId(newId);
+		gameFinalScore.setTotalScore(totalScore);
+		gameFinalScore.setTotalMovements(totalMovements);
+		gameFinalScore.setTotalFruits(totalFruits);
+		gameFinalScore.setMaxLevel(maxLevel);
+		gameFinalScore.setSnakeSkin(snakeSkinName);
+		gameFinalScore.setUserNickName(nickname);
+		
+		
+		records.saveNewRecord(gameFinalScore);
+	}
+	
+	public int convertStringToInt(String str) {
+	    try {
+	        return Integer.parseInt(str);
+	    } catch (NumberFormatException e) {
+	        System.out.println("El string no puede ser convertido a entero");
+	        return 0;
+	    }
+	}
+	
+	public static String generateGameId() {
+        return UUID.randomUUID().toString();
+    }
 }
