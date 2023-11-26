@@ -9,6 +9,9 @@ import javax.swing.border.*;
 
 import Controllers.GameController;
 
+/**
+ * La clase GameOver representa la pantalla de fin de juego.
+ */
 @SuppressWarnings("serial")
 public class GameOver extends JPanel implements ActionListener {
 	private JLabel totalScore;
@@ -27,6 +30,16 @@ public class GameOver extends JPanel implements ActionListener {
 	
 	private GameController controller;
 	
+	/**
+     * Constructor de GameOver.
+     *
+     * @param score El puntaje obtenido en el juego.
+     * @param movements Los movimientos realizados en el juego.
+     * @param fruits Las frutas recogidas en el juego.
+     * @param level El nivel alcanzado en el juego.
+     * @param snakeSkinName El nombre de la piel de la serpiente utilizada en el juego.
+     * @param controller El controlador del juego.
+     */
 	public GameOver(String score, String movements, String fruits, String level, String snakeSkinName, GameController controller) {
 		this.controller = controller;		
 		
@@ -43,6 +56,9 @@ public class GameOver extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 	
+	/**
+     * Inicializa los componentes de la pantalla de fin de juego.
+     */
 	public void initializeComponents() {
 		insertGameOverTitle();
 		insertNickNameLabel();
@@ -50,6 +66,9 @@ public class GameOver extends JPanel implements ActionListener {
 		insertmenuButton();
 	}
 	
+	/**
+     * Inserta el título de Game Over en la pantalla de fin de juego.
+     */
 	public void insertGameOverTitle() {
 		JPanel section = new JPanel();
 		section.setLayout(new GridBagLayout());
@@ -80,6 +99,9 @@ public class GameOver extends JPanel implements ActionListener {
 		this.add(section);
 	}
 	
+	/**
+     * Inserta la etiqueta de nombre de usuario en la pantalla de fin de juego.
+     */
 	public void insertNickNameLabel() {
 		JPanel section = new JPanel();
 		section.setLayout(new GridBagLayout());
@@ -108,6 +130,9 @@ public class GameOver extends JPanel implements ActionListener {
 		nameInput.requestFocus();
 	}
 	
+	/**
+     * Inserta la sección de puntuación en la pantalla de fin de juego.
+     */
 	public void insertScoringSection() {
 		JPanel section = new JPanel(new GridLayout(2,1));
 		
@@ -137,6 +162,9 @@ public class GameOver extends JPanel implements ActionListener {
 		this.add(section);
 	}
 	
+	/**
+     * Inserta el botón del menú en la pantalla de fin de juego.
+     */
 	public void insertmenuButton() {			
 		resetButton = new JButton("Try Again");
 		resetButton.setActionCommand("tryAgain");
@@ -159,7 +187,11 @@ public class GameOver extends JPanel implements ActionListener {
 		this.add(buttonPanel);
 	}
 	
-	
+	/**
+     * Obtiene la sección del nivel máximo en la pantalla de fin de juego.
+     *
+     * @return La sección del nivel máximo en la pantalla de fin de juego.
+     */
 	public JPanel getmaxLevelSection() {
 		JPanel section = new JPanel(new GridBagLayout());
 	    GridBagConstraints gbc = new GridBagConstraints();
@@ -181,6 +213,11 @@ public class GameOver extends JPanel implements ActionListener {
 	    return section;
 	}
 	
+	/**
+     * Obtiene la sección de puntuación en la pantalla de fin de juego.
+     *
+     * @return La sección de puntuación en la pantalla de fin de juego.
+     */
 	public JPanel getScoreSection() {
 		JPanel section = new JPanel(new GridBagLayout());
 	    GridBagConstraints gbc = new GridBagConstraints();
@@ -201,6 +238,11 @@ public class GameOver extends JPanel implements ActionListener {
 		return section;
 	}
 	
+	/**
+     * Obtiene la sección de movimientos totales en la pantalla de fin de juego.
+     *
+     * @return La sección de movimientos totales en la pantalla de fin de juego.
+     */
 	public JPanel getTotalMovementsSection() {
 		JPanel section = new JPanel(new GridBagLayout());
 	    GridBagConstraints gbc = new GridBagConstraints();
@@ -221,6 +263,11 @@ public class GameOver extends JPanel implements ActionListener {
 		return section;
 	}
 	
+	/**
+     * Obtiene la sección de frutas totales en la pantalla de fin de juego.
+     *
+     * @return La sección de frutas totales en la pantalla de fin de juego.
+     */
 	public JPanel gettotalFruitsSection() {
 		JPanel section = new JPanel(new GridBagLayout());
 	    GridBagConstraints gbc = new GridBagConstraints();
@@ -241,6 +288,11 @@ public class GameOver extends JPanel implements ActionListener {
 		return section;
 	}
 	
+	/**
+     * Maneja las acciones realizadas en la pantalla de fin de juego.
+     *
+     * @param e El evento de acción.
+     */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -259,15 +311,31 @@ public class GameOver extends JPanel implements ActionListener {
 		}
 	}
 	
+	/**
+     * Crea una nueva etiqueta con el texto especificado.
+     *
+     * @param text El texto para la etiqueta.
+     * @return Una nueva etiqueta con el texto especificado.
+     */
 	public JLabel createLabel(String text) {
 		JLabel newText = new JLabel(text);
 		return newText;
 	}
 
+	/**
+     * Obtiene el botón del menú en la pantalla de fin de juego.
+     *
+     * @return El botón del menú en la pantalla de fin de juego.
+     */
 	public JButton getmenuButton() {
 		return menuButton;
 	}
 	
+	/**
+     * Obtiene el botón de reinicio en la pantalla de fin de juego.
+     *
+     * @return El botón de reinicio en la pantalla de fin de juego.
+     */
 	public JButton getResetButton() {
 		return resetButton;
 	}

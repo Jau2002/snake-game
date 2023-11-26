@@ -1,6 +1,4 @@
 package Views;
-
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -12,6 +10,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * La clase SkinSelection representa la selección de skin de la serpiente en el juego.
+ */
 @SuppressWarnings("serial")
 public class SkinSelection extends JPanel implements ActionListener {
     private snakeSkinDrawPanel snakeSection;
@@ -21,6 +22,10 @@ public class SkinSelection extends JPanel implements ActionListener {
     private String skinSelected;
     private JButton startGame;
 
+    /**
+     * Constructor de SkinSelection.
+     * Inicializa la selección de piel skin de la serpiente en el juego.
+     */
     public SkinSelection() {
         setLayout(new GridLayout(4, 1));
         setPreferredSize(new Dimension(600, 600));
@@ -29,6 +34,9 @@ public class SkinSelection extends JPanel implements ActionListener {
         setVisible(true);
     }
 
+    /**
+     * Inicializa los componentes de la selección de skin.
+     */
     public void initializeComponents() {
         insertTitle();
         insertSnakeSection();
@@ -36,6 +44,9 @@ public class SkinSelection extends JPanel implements ActionListener {
         insertSetGameButton();
     }
 
+    /**
+     * Inserta el título en la selección de skin.
+     */
     public void insertTitle() {
         JLabel mainTitle = new JLabel("Select skin");
         mainTitle.setFont(new Font("Arial", Font.BOLD, 45));
@@ -44,12 +55,18 @@ public class SkinSelection extends JPanel implements ActionListener {
         add(mainTitle);
     }
 
+    /**
+     * Inserta el sección de selección de skin.
+     */
     public void insertSnakeSection() {
         snakeSection = new snakeSkinDrawPanel();
         add(snakeSection);
         repaint();
     }
 
+    /**
+     * Inserta el selector de radio buttons de skin en la selección de skin.
+     */
     public void insertSkinSelector() {
         String skins[] = {"Green", "Red", "Blue", "Violet", "Gray"};
         snakeSelector = new JPanel();
@@ -72,6 +89,9 @@ public class SkinSelection extends JPanel implements ActionListener {
         add(snakeSelector);
     }
 
+    /**
+     * Inserta el botón de inicio del juego en la selección de skin.
+     */
     public void insertSetGameButton() {
         startGame = new JButton("StartGame");
         startGame.setActionCommand("skinStartGame");
@@ -82,18 +102,34 @@ public class SkinSelection extends JPanel implements ActionListener {
         this.add(buttonPanel);
     }
 
+    /**
+     * Obtiene un radio button para un color específico.
+     *
+     * @param color El color para el botón de radio.
+     * @return Un radio button para el color especificado.
+     */
     public JRadioButton getRadioButton(String color) {
         JRadioButton button = new JRadioButton(color);
         button.setActionCommand(color);
         return button;
     }
 
+    /**
+     * Maneja las acciones realizadas en la selección de skin.
+     *
+     * @param e El evento de acción.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String skin = e.getActionCommand();
         setSkin(skin);
     }
 
+    /**
+     * Establece la skin en la selección de skin.
+     *
+     * @param skin La skin a establecer.
+     */
     public void setSkin(String skin) {
         skinSelected = skin;
 
@@ -124,27 +160,58 @@ public class SkinSelection extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Obtiene la sección de la serpiente en la selección de skin.
+     *
+     * @return La sección de la serpiente en la selección de skin.
+     */
     public snakeSkinDrawPanel getSnakeSection() {
         return snakeSection;
     }
 
+    /**
+     * Obtiene el selector de piel en la selección de skin.
+     *
+     * @return El selector de piel en la selección de skin.
+     */
     public JPanel getSnakeSelector() {
         return snakeSelector;
     }
 
+    /**
+     * Obtiene el color de la cabeza de la serpiente en la selección de skin.
+     *
+     * @return El color de la cabeza de la serpiente en la selección de skin.
+     */
     public Color getHeadColor() {
         return headColor;
     }
 
+    /**
+     * Obtiene el color del cuerpo de la serpiente en la selección de skin.
+     *
+     * @return El color del cuerpo de la serpiente en la selección de skin.
+     */
     public Color getBodyColor() {
         return bodyColor;
     }
 
+    /**
+     * Obtiene el botón de inicio del juego en la selección de skin.
+     *
+     * @return El botón de inicio del juego en la selección de skin.
+     */
     public JButton getStartGame() {
         return startGame;
     }
 
+    /**
+     * Obtiene el nombre de la piel seleccionada en la selección de skin.
+     *
+     * @return El nombre de la piel seleccionada en la selección de skin.
+     */
     public String getSkinName() {
         return skinSelected;
     }
+
 }

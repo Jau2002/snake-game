@@ -6,13 +6,25 @@ import java.util.*;
 
 import Models.GameModel;
 
+/**
+ * La clase UsersHistory representa el historial de los juegos de los usuarios.
+ */
 public class UsersHistory {
     private ArrayList<GameModel> records;
 
+    /**
+     * Constructor de UsersHistory.
+     * Inicializa un nuevo historial de usuarios cargando los datos existentes.
+     */
     public UsersHistory() {
     	this.records = loadData();
     }
     
+    /**
+     * Guarda un nuevo registro de juego en el historial.
+     *
+     * @param game El modelo de juego a guardar.
+     */
     public void saveNewRecord(GameModel game) {    	
     	Map<String, String> data = new HashMap<>();
         data.put("gameId", game.getGameId());
@@ -40,6 +52,11 @@ public class UsersHistory {
         records = this.loadData();
     }
     
+    /**
+     * Carga los datos del historial de usuarios desde el archivo de registros del juego.
+     *
+     * @return Una lista de modelos de juego que representan los registros del juego.
+     */
     public ArrayList<GameModel> loadData() {
         ArrayList<GameModel> newRecord = new ArrayList<>();
         
@@ -81,6 +98,9 @@ public class UsersHistory {
         return newRecord;
     }    
     
+    /**
+     * Lee e imprime los registros del historial de usuarios.
+     */
     public void readRecords() {
     	for (GameModel juego : records) {
     	    System.out.println("\nGame id: " + juego.getGameId());
@@ -93,6 +113,11 @@ public class UsersHistory {
     	}
     }
 
+    /**
+     * Obtiene los registros del historial de usuarios.
+     *
+     * @return Una lista de modelos de juego que representan los registros del juego.
+     */
     public ArrayList<GameModel> getRecord() {
 		return records;
 	}

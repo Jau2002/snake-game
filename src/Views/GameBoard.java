@@ -1,6 +1,4 @@
 package Views;
-
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -17,6 +15,9 @@ import javax.swing.border.EmptyBorder;
 import Utils.Fruit;
 import Utils.Snake;
 
+/**
+ * La clase GameBoard representa el tablero del juego.
+ */
 @SuppressWarnings("serial")
 public class GameBoard extends JPanel implements ActionListener {
     private int screenWidth;
@@ -24,11 +25,8 @@ public class GameBoard extends JPanel implements ActionListener {
     private int unitSize;
     private int gameUnits;
     private int gameSpeed;
-
     private boolean running = false;
-
     private char direction;
-
     private Timer timer;
     private Random random;
     private Snake gameSnake;
@@ -38,6 +36,15 @@ public class GameBoard extends JPanel implements ActionListener {
     private Color gameBoardColor;
     private Color gridColor;
 
+    /**
+     * Constructor de GameBoard.
+     *
+     * @param screenWidth El ancho de la pantalla del juego.
+     * @param screenHeight La altura de la pantalla del juego.
+     * @param snake La serpiente del juego.
+     * @param scores La sección de puntuación del juego.
+     * @param gameParent El panel del juego.
+     */
     public GameBoard(int screenWidth, int screenHeight, Snake snake, ScoreSection scores, GamePanel gameParent) {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
@@ -62,12 +69,18 @@ public class GameBoard extends JPanel implements ActionListener {
         startGame();
     }
 
+    /**
+     * Inicia el juego creando una nueva fruta y estableciendo el estado de ejecución a verdadero.
+     */
     public void startGame() {
         newFruit();
         running = true;
         initializeTimer();
     }
 
+    /**
+     * Inicializa el temporizador del juego.
+     */
     private void initializeTimer() {
         if (timer != null) {
             timer.stop();
@@ -78,11 +91,21 @@ public class GameBoard extends JPanel implements ActionListener {
         timer.start();
     }
 
+    /**
+     * Dibuja los componentes en el tablero del juego.
+     *
+     * @param g Los gráficos utilizados para dibujar.
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
     }
 
+    /**
+     * Dibuja la serpiente y la fruta en el tablero del juego si el juego está en ejecución.
+     *
+     * @param g Los gráficos utilizados para dibujar.
+     */
     public void draw(Graphics g) {
         if (running) {
             drawGrid(g);
@@ -91,6 +114,11 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Dibuja la cuadrícula en el tablero del juego.
+     *
+     * @param g Los gráficos utilizados para dibujar.
+     */
     public void drawGrid(Graphics g) {
         g.setColor(gridColor);
         for (int i = 0; i < screenHeight / unitSize; i++) {
@@ -99,6 +127,11 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Dibuja la fruta en el tablero del juego.
+     *
+     * @param g Los gráficos utilizados para dibujar.
+     */
     public void drawFruit(Graphics g) {
         int x = currentFruit.getFruitX();
         int y = currentFruit.getFruitY();
@@ -109,6 +142,11 @@ public class GameBoard extends JPanel implements ActionListener {
         g.fillOval(x, y, unitSize, unitSize);
     }
 
+    /**
+     * Dibuja la serpiente en el tablero del juego.
+     *
+     * @param g Los gráficos utilizados para dibujar.
+     */
     public void drawSnake(Graphics g) {
         int bodyParts = gameSnake.getBodyParts();
 
@@ -129,6 +167,9 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Mueve la serpiente en el tablero del juego.
+     */
     public void move() {
         int bodyParts = gameSnake.getBodyParts();
         int snakeX[] = gameSnake.getX();
@@ -152,6 +193,9 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Comprueba si la serpiente ha comido una fruta.
+     */
     public void checkFruit() {
         int bodyParts = gameSnake.getBodyParts();
 
@@ -179,6 +223,9 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Comprueba el nivel actual en función de la puntuación.
+     */
     public void checkLevel() {
         int currentScore = convertStringToInt(scores.getTotalScore().getText());
         String currentLevel = scores.getCurrentLevel().getText();
@@ -235,6 +282,9 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Comprueba si la serpiente ha chocado consigo misma o con los bordes del tablero.
+     */
     public void checkCollitions() {
         int bodyParts = gameSnake.getBodyParts();
 
@@ -262,10 +312,20 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Obtiene la dirección actual de la serpiente en el tablero del juego.
+     *
+     * @return La dirección actual de la serpiente en el tablero del juego.
+     */
     public char getDirection() {
         return direction;
     }
 
+    /**
+     * Maneja las acciones realizadas en el tablero del juego.
+     *
+     * @param e El evento de acción.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (running) {
@@ -277,6 +337,9 @@ public class GameBoard extends JPanel implements ActionListener {
         repaint();
     }
 
+    /**
+     * Crea una nueva fruta en el tablero del juego.
+     */
     public void newFruit() {
         int prob = random.nextInt(100) + 1;
         int x, y;
@@ -287,6 +350,13 @@ public class GameBoard extends JPanel implements ActionListener {
         currentFruit = new Fruit(x, y, prob);
     }
 
+    /**
+     * Comprueba si una posición específica es parte de la serpiente.
+     *
+     * @param x La posición x a comprobar.
+     * @param y La posición y a comprobar.
+     * @return Verdadero si la posición es parte de la serpiente, falso en caso contrario.
+     */
     public boolean isSnakePart(int x, int y) {
         int bodyParts = gameSnake.getBodyParts();
         int snakeX[] = gameSnake.getX();
@@ -300,6 +370,12 @@ public class GameBoard extends JPanel implements ActionListener {
         return false;
     }
 
+    /**
+     * Convierte una cadena a un entero.
+     *
+     * @param str La cadena a convertir.
+     * @return El entero convertido.
+     */
     public int convertStringToInt(String str) {
         int num = 0;
         try {
@@ -310,6 +386,9 @@ public class GameBoard extends JPanel implements ActionListener {
         return num;
     }
 
+    /**
+     * La clase BoardKeyAdapter maneja las teclas presionadas en el tablero del juego.
+     */
     public class BoardKeyAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
